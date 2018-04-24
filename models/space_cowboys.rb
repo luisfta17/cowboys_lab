@@ -59,6 +59,7 @@ def delete()
  db.close()
 end
 
+
 # Class method
 def BountyClass.delete_all()
   db = PG.connect({
@@ -71,6 +72,18 @@ def BountyClass.delete_all()
  db.close()
 end
 
+def BountyClass.find_by_name(name)
+  db = PG.connect({
+    dbname: "space_cowboys",
+    host: "localhost"
+    })
+    sql = "SELECT * FROM space_cowboys WHERE name = $1"
+    db.prepare("find_by_name", sql)
+    name_hash = db.exec_prepared("find_by_name", [name])
+    db.close()
+    name_found = name_hash.map { |name| BountyClass.new(name)}
+    return name_found.first()
+  end
 
 
 
