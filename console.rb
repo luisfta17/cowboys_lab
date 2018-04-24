@@ -18,7 +18,8 @@ cowboy2 = BountyClass.new({
   })
 cowboy2.save()
 
-cowboy = BountyClass.find_by_name("Hannn")
+cowboyhan = BountyClass.find_by_name("Han")
+cowboychew = BountyClass.find_by_id(28)
 
   binding.pry
   nil

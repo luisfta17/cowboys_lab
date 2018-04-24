@@ -85,6 +85,19 @@ def BountyClass.find_by_name(name)
     return name_found.first()
   end
 
+  def BountyClass.find_by_id(id)
+    db = PG.connect({
+      dbname: "space_cowboys",
+      host: "localhost"
+      })
+      sql = "SELECT * FROM space_cowboys WHERE id = $1"
+      db.prepare("find_by_name", sql)
+      name_hash = db.exec_prepared("find_by_name", [id])
+      db.close()
+      name_found = name_hash.map { |name| BountyClass.new(name)}
+      return name_found.first()
+    end
+
 
 
 
