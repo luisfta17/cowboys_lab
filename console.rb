@@ -1,6 +1,8 @@
 require("pry")
 require_relative("models/space_cowboys")
 
+BountyClass.delete_all()
+
 cowboy1 = BountyClass.new({
   "name" => "Han",
   "species" => "Human",
@@ -19,4 +21,3 @@ cowboy2.save()
 
   binding.pry
   nil
-  
