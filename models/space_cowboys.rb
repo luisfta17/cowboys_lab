@@ -48,7 +48,16 @@ def update()
  db.close()
 end
 
-
+def delete()
+  db = PG.connect({
+    dbname: "space_cowboys",
+    host: "localhost"
+    })
+ sql = "DELETE FROM space_cowboys WHERE id = $1"
+ db.prepare("delete", sql)
+ db.exec_prepared("delete", [@id])
+ db.close()
+end
 
 # Class method
 def BountyClass.delete_all()
